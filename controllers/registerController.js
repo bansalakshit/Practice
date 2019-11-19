@@ -22,7 +22,7 @@ register.signup = async (req, res) => {
                     let obj = {
                         name: req.body.name,
                         username: req.body.username,
-                        email: req.body.email,
+                        email: req.body.email
                     }
                     const saltRounds = 10;
                     const password = req.body.password;
@@ -44,16 +44,16 @@ register.signup = async (req, res) => {
                                         if(data){
                                             res.status(200).send('Register Successfully..')
                                         }
-                                        // const expiry = 60 * 24 * 60 * 60;
-                                        // const expiresOn = Date.now() + (expiry * 1000)
-                                        // const token = jwt.sign({
-                                        //     _id: data._id, name: data.username
-                                        // },
-                                        //     "qwertyui", {
-                                        //         algorithm: 'HS384',
-                                        //         expiresIn: expiry,
-                                        //         issuer: 'admin'
-                                        //     });
+                                        const expiry = 60 * 24 * 60 * 60;
+                                        const expiresOn = Date.now() + (expiry * 1000)
+                                        const token = jwt.sign({
+                                            _id: data._id, name: data.username
+                                        },
+                                            "qwertyui", {
+                                                algorithm: 'HS384',
+                                                expiresIn: expiry,
+                                                issuer: 'admin'
+                                            });
                                         // res.status(200).send({ data: { user: data, token: token, expiresOn: expiresOn } });
                                     }
                                 })
